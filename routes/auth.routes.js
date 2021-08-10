@@ -15,7 +15,7 @@ router.post(
   "/register",
   [
     check("email", "Incorrect email").isEmail(),
-    check("password", "minimum length of password is 6 chars").isLength({
+    check("password", "Minimum length of password is 6 chars").isLength({
       min: 6,
     }),
   ],
@@ -57,7 +57,7 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array(),
-          message: "incorrect data for login",
+          message: "Incorrect data for login",
         });
       }
       const { email, password } = req.body;
