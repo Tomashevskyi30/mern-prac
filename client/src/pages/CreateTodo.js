@@ -23,7 +23,7 @@ export const CreateTodo = () => {
                 return message('Input text are empty,type something!')
             }
             try {
-                const data = await request('/api/todo/generate', 'POST', {text: todo}, {
+                await request('/api/todo/generate', 'POST', {text: todo}, {
                     Authorization: `Bearer ${auth.token}`
                 })
                 await fetchTodos()
@@ -65,20 +65,19 @@ export const CreateTodo = () => {
     }
     const completeHandler = async (id,complete)=>{
         try {
-           const fetched = await request('/api/todo/complete','POST',{_id:id,isCompleted:!complete},{
+           await request('/api/todo/complete','POST',{_id:id,isCompleted:!complete},{
                 Authorization:`Bearer ${auth.token}`
             })
-            console.log(fetched.todo.isCompleted)
-
-            await fetchTodos()
-            setTodo('')
+           await fetchTodos()
         }catch (e){}
     }
-
     useEffect(() => {
         fetchTodos()
     }, [fetchTodos])
 
+    if(loading){
+        return <Loader/>
+    }
 
     return (
         <div className="row">
@@ -95,7 +94,7 @@ export const CreateTodo = () => {
                     <label htmlFor="link">Type WhatTodo</label>
                 </div>
 
-                 <TodoList  onComplete={completeHandler} todos={todos} onDelete={deleteHandler} onEdit={editHandler}/>
+                 <TodoList onComplete={completeHandler} todos={todos} onDelete={deleteHandler} onEdit={editHandler}/>
             </div>
         </div>
     )
