@@ -1,6 +1,6 @@
 {
   "jwtSecret": "anton mern",
-  "mongoUri": "mongodb+srv://anton:lAkmpptytxEyXrjF@cluster0.zymni.mongodb.net/app?retryWrites=true&w=majority",
+  "mongoUri": "mongodb+srv://user:WLUl9BJDEXQQwwch@cluster0.2dlig.mongodb.net/?retryWrites=true&w=majority",
   "port": 5000,
   "baseUrl": "http://localhost:5000"
 }
